@@ -11,7 +11,7 @@
         "@pulumi/awsx": "^0.30.0",
         "@pulumi/pulumi": "^3.0.0",
         "mustache": "^4.2.0",
-        "octokit": "^1.7.1"
+        "octokit": "^1.8.1"
     },
     "scripts": {
         "lint-aws": "tslint --project ./aws",

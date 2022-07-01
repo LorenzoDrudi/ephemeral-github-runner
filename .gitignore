@@ -3,3 +3,5 @@
 /aws/node_modules/
 /gcp/node_modules/
 .localconfig/
+.env
+config.yaml

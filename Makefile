@@ -1,13 +1,16 @@
 SHELL:=/bin/bash
 stack=dev1
-config=config.yaml
+config=../config.yaml
 auto-approve?=
+provider=
 
 up:
-	pulumi stack init ${stack}
+	cd ${provider} && \
+	pulumi stack init ${stack} && \
 	pulumi update --diff --config-file ${config} ${auto-approve}
 
 down:
-	pulumi stack select ${stack}
-	pulumi destroy --config-file ${config} ${auto-approve}
+	cd ${provider} && \
+	pulumi stack select ${stack} && \
+	pulumi destroy --config-file ${config} ${auto-approve} && \
 	pulumi stack rm ${stack} ${auto-approve}
