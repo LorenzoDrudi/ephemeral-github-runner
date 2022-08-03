@@ -7,3 +7,5 @@
 config.yaml
 ghapp.pem
 gcp.json
+/.vscode
+Pulumi.*.yaml
