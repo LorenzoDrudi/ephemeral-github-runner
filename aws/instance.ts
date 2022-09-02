@@ -5,6 +5,7 @@ import { securityGroup } from './security-group';
 
 const config = new pulumi.Config();
 const machineType = config.require("machineType");
+const stack = pulumi.getStack();
 
 export const instance = aws.getCallerIdentity({}).then(identity => {
     return startupScript.then(script => {
@@ -19,7 +20,10 @@ export const instance = aws.getCallerIdentity({}).then(identity => {
             monitoring: true,
             ami: ami.id,
             instanceType: machineType,
-            tags: { "Name": `${config.require("repo")} Github Runner` },
+            tags: {
+                "Name": `${config.require("repo")} Github Runner`,
+                "Runner": stack
+            },
             vpcSecurityGroupIds: [ securityGroup.id ],
             userData: Buffer.from(script).toString("base64"),
             ebsBlockDevices: [{
